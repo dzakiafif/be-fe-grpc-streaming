@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package book;
+
+option go_package = "./book";
+
+service BookService {
+  rpc StreamBooks(stream BookStreamRequest) returns (stream BookStreamResponse);
+}
+
+enum ActionType {
+  UNKNOWN = 0;
+  LIST = 1;
+  GET = 2;
+  CREATE = 3;
+  UPDATE = 4;
+  DELETE = 5;
+  SUBSCRIBE = 6;
+}
+
+enum Status {
+  SUCCESS = 0;
+  ERROR = 1;
+  NOT_FOUND = 2;
+  INVALID_INPUT = 3;
+}
+
+message Book {
+  string id = 1;
+  string title = 2;
+  string author = 3;
+  string description = 4;
+  int32 published_year = 5;
+  string created_at = 6;
+  string updated_at = 7;
+}
+
+message BookStreamRequest {
+  ActionType action = 1;
+  string request_id = 2;
+  Book book = 3;
+  string book_id = 4;
+  string search_query = 5;
+}
+
+message BookStreamResponse {
+  ActionType action = 1;
+  Status status = 2;
+  string message = 3;
+  string request_id = 4;
+  repeated Book books = 5;
+  Book book = 6;
+  int32 total_count = 7;
+  string timestamp = 8;
+}
