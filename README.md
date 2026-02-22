@@ -188,8 +188,6 @@ docker run -p 3000:3000 -p 50051:50051 book-manager-backend
 
 ## 📚 Documentation
 
-- [SETUP.md](./SETUP.md) - Complete setup guide
-- [SECURITY.md](./SECURITY.md) - Security considerations
 - [gRPC Basics](https://grpc.io/docs/languages/node/basics/)
 - [Next.js 15 Docs](https://nextjs.org/docs)
 
